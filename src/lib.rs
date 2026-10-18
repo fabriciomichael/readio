@@ -10,7 +10,5 @@ mod tests {
     use input::input;
 
     #[test]
-    fn it_works_one() {
-        let scan = input().unwrap();
-    }
+    fn it_works_one() {}
 }

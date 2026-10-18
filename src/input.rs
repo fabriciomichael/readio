@@ -52,11 +52,8 @@ pub fn input() -> io::Result<String> {
 pub fn prompt(mensagem: &str) -> io::Result<String> {
     print!("{mensagem}");
     io::stdout().flush()?;
-
     input()
 }
-
-
 /// Reads an integer from standard input.
 ///
 /// The function displays a prompt and converts the entered value to an integer.
@@ -89,8 +86,6 @@ pub fn input_int(mensagem: &str) -> io::Result<i64> {
         }
     }
 }
-
-
 /// Reads a floating-point number from standard input.
 ///
 /// # Arguments
@@ -120,7 +115,6 @@ pub fn input_float(mensagem: &str) -> io::Result<f64> {
         }
     }
 }
-
 /// Asks the user to confirm an operation.
 ///
 /// The accepted responses and their interpretation depend on the implementation.
@@ -158,7 +152,6 @@ pub fn confirm(mensagem: &str) -> io::Result<bool> {
         }
     }
 }
-
 /// Reads input and parses it into the requested type.
 ///
 /// If the input cannot be parsed, the function may ask the user to try again,
