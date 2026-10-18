@@ -246,8 +246,8 @@ O projecto também serve como exercício de aprendizagem sobre módulos, funçõ
 
 ## Licença
 
-A licença ainda não foi definida. Antes de publicar ou distribuir a biblioteca, escolhe uma licença adequada e inclui o respectivo ficheiro, por exemplo `LICENSE`.
-
+Este projeto está licenciado sob a Licença MIT.
+Consulte o arquivo [LICENSE](LICENSE) para obter mais detalhes.
 ---
 
 **readio** — Simplificando a entrada de dados em Rust.

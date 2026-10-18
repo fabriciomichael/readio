@@ -1,7 +1,22 @@
 use std::io::{self, Write};
 use std::fmt::Display;
 
-/// Lê uma linha de texto sem mostrar uma mensagem.
+/// Reads a line of text from standard input.
+///
+/// The function waits for the user to enter text and press Enter.
+///
+/// # Returns
+///
+/// Returns the entered text as a `String`, or an I/O error.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::input;
+///
+/// let name = input().expect("Failed to read input");
+/// println!("Hello, {name}!");
+/// ```
 pub fn input() -> io::Result<String> {
     let mut valor = String::new();
 
@@ -15,7 +30,25 @@ pub fn input() -> io::Result<String> {
     Ok(valor)
 }
 
-/// Mostra uma mensagem e lê a resposta.
+/// Displays a prompt and reads a line of text from standard input.
+///
+/// # Arguments
+///
+/// * `mensagem` - The message displayed before reading input.
+///
+/// # Returns
+///
+/// Returns the entered text as a `String`, or an I/O error.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::prompt;
+///
+/// let name = prompt("Enter your name: ")?;
+/// println!("Hello, {name}!");
+/// # Ok::<(), std::io::Error>(())
+/// ```
 pub fn prompt(mensagem: &str) -> io::Result<String> {
     print!("{mensagem}");
     io::stdout().flush()?;
@@ -23,7 +56,29 @@ pub fn prompt(mensagem: &str) -> io::Result<String> {
     input()
 }
 
-/// Lê um número inteiro, repetindo até receber um valor válido.
+
+/// Reads an integer from standard input.
+///
+/// The function displays a prompt and converts the entered value to an integer.
+/// Invalid input handling depends on the implementation.
+///
+/// # Arguments
+///
+/// * `mensagem` - The message displayed before reading input.
+///
+/// # Returns
+///
+/// Returns the integer value or an I/O error.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::input_int;
+///
+/// let age = input_int("Enter your age: ")?;
+/// println!("Age: {age}");
+/// # Ok::<(), std::io::Error>(())
+/// ```
 pub fn input_int(mensagem: &str) -> io::Result<i64> {
     loop {
         let valor = prompt(mensagem)?;
@@ -35,7 +90,26 @@ pub fn input_int(mensagem: &str) -> io::Result<i64> {
     }
 }
 
-/// Lê um número decimal, repetindo até receber um valor válido.
+
+/// Reads a floating-point number from standard input.
+///
+/// # Arguments
+///
+/// * `mensagem` - The message displayed before reading input.
+///
+/// # Returns
+///
+/// Returns the numeric value or an I/O error.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::input_float;
+///
+/// let price = input_float("Enter a price: ")?;
+/// println!("Price: {price}");
+/// # Ok::<(), std::io::Error>(())
+/// ```
 pub fn input_float(mensagem: &str) -> io::Result<f64> {
     loop {
         let valor = prompt(mensagem)?;
@@ -47,7 +121,31 @@ pub fn input_float(mensagem: &str) -> io::Result<f64> {
     }
 }
 
-/// Solicita uma confirmação com sim ou não.
+/// Asks the user to confirm an operation.
+///
+/// The accepted responses and their interpretation depend on the implementation.
+///
+/// # Arguments
+///
+/// * `mensagem` - The confirmation question displayed to the user.
+///
+/// # Returns
+///
+/// Returns `true` or `false` according to the user's response,
+/// or an I/O error.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::confirm;
+///
+/// if confirm("Do you want to continue? ")? {
+///     println!("Continuing...");
+/// } else {
+///     println!("Operation cancelled.");
+/// }
+/// # Ok::<(), std::io::Error>(())
+/// ```
 pub fn confirm(mensagem: &str) -> io::Result<bool> {
     loop {
         let resposta = prompt(&format!("{mensagem} [s/n]: "))?;
@@ -61,7 +159,32 @@ pub fn confirm(mensagem: &str) -> io::Result<bool> {
     }
 }
 
-/// Lê um valor da consola e converte-o para o tipo solicitado.
+/// Reads input and parses it into the requested type.
+///
+/// If the input cannot be parsed, the function may ask the user to try again,
+/// depending on the implementation.
+///
+/// # Type Parameters
+///
+/// * `T` - The type into which the input will be parsed.
+///
+/// # Arguments
+///
+/// * `mensagem` - The message displayed before reading input.
+///
+/// # Returns
+///
+/// Returns a value of type `T` wrapped in `io::Result`.
+///
+/// # Examples
+///
+/// ```no_run
+/// use readio::input_parse;
+///
+/// let age: u32 = input_parse("Enter your age: ")?;
+/// let active: bool = input_parse("Is the account active? ")?;
+/// # Ok::<(), std::io::Error>(())
+/// ```
 pub fn input_parse<T>(mensagem: &str) -> io::Result<T>
 where
     T: std::str::FromStr,
