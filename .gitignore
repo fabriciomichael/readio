@@ -1,0 +1,10 @@
+
+# Ficheiros gerados pela compilação Rust
+/target/
+
+# Ficheiros locais de configuração do editor
+.vscode/
+.idea/
+
+# Ficheiro de bloqueio: biblioteca autónoma
+/Cargo.lock

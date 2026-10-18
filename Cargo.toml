@@ -1,0 +1,11 @@
+[package]
+name = "readio"
+version = "0.1.0"
+edition = "2024"
+description = "A lightweight Rust library for reading and validating console input."
+license = "MIT"
+readme = "README.md"
+keywords = ["input", "cli", "console", "terminal"]
+categories = ["command-line-interface"]
+
+[dependencies]
